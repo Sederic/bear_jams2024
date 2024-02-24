@@ -769,7 +769,6 @@ GameObject:
   m_Component:
   - component: {fileID: 684193398}
   - component: {fileID: 684193402}
-  - component: {fileID: 684193400}
   - component: {fileID: 684193399}
   m_Layer: 5
   m_Name: Dialogue Box
@@ -818,18 +817,6 @@ MonoBehaviour:
   - 
   - 
   textSpeed: 0.05
---- !u!114 &684193400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684193397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e943686b4f7d646a07fbead41720cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &684193402
 CanvasRenderer:
   m_ObjectHideFlags: 0
