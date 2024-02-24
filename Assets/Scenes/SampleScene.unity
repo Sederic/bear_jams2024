@@ -676,6 +676,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545434796}
   m_CullTransparentMesh: 1
+--- !u!1 &623323698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623323700}
+  - component: {fileID: 623323699}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &623323699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623323698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ddec3ed5dce5c4f924807a97404247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueClass: {fileID: 0}
+  playerInputTextBox: {fileID: 1650077436}
+  playerInput: 
+--- !u!4 &623323700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623323698}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684193397
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,13 +775,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMeshProUGUI: {fileID: 545434798}
-  lines:
-  - Do you guys think we should keep this as the standard dialogue box?
-  - This option would probably be easier to develop.
-  - Feels like this would be the most streamline way to make it all work by Sunday
-    evening.
-  - I was thinking about possibly adding speech bubbles or somethihg.
-  - But now this is kinda growing on me..
+  linesOfDialogue:
+  - Here's the first example!
+  - Then the second
+  - Tooda lo
+  - 
   textSpeed: 0.05
 --- !u!222 &684193402
 CanvasRenderer:
@@ -840,6 +885,7 @@ GameObject:
   - component: {fileID: 1022796679}
   - component: {fileID: 1022796678}
   - component: {fileID: 1022796677}
+  - component: {fileID: 1022796680}
   m_Layer: 5
   m_Name: Player Input
   m_TagString: Untagged
@@ -1003,6 +1049,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022796675}
   m_CullTransparentMesh: 1
+--- !u!114 &1022796680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022796675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f38dc5d0490e94a8bb67456c5d879e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1246355521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1577,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 623323700}
   - {fileID: 484374218}
   - {fileID: 170418286}
   - {fileID: 315839438}
