@@ -20,12 +20,6 @@ public class ID : MonoBehaviour
         UpdateIDs(currentPlayerID);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateIDs(int id)
     {
         Sprite[] IDSprites = new Sprite[]

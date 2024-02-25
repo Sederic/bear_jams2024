@@ -841,7 +841,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1790807160}
         m_TargetAssemblyTypeName: SceneNavigator, Assembly-CSharp
-        m_MethodName: StartGameScene
+        m_MethodName: GoToMainScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -901,7 +901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cdfa3221ecf5f499918b7602a52fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoadName: 
 --- !u!1 &1999610866
 GameObject:
   m_ObjectHideFlags: 0

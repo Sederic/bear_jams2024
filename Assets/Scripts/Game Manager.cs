@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     public Dialogue dialogueClass;
     public TextMeshProUGUI playerInputTextBox;
     public string playerText;
-    public int currentId = 0;
+    
     public string playerInput;
     public string botReply;
     public string conversation = "";
@@ -26,8 +26,17 @@ public class GameManager : MonoBehaviour {
     public string selectedBot = "bot1";
     private string bot1URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot1";
     private string bot2URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot2";
-    
 
+
+    //Level & ID tracking
+    int currentLevelScene = 0;
+    int currentId = 0;
+
+
+    public int ReturnCurrentLevel()
+    {
+        return currentLevelScene;
+    }
 
 
     private string json = @"{
@@ -49,10 +58,14 @@ public class GameManager : MonoBehaviour {
 }
 
 // Update is called once per frame
-void Update()
+    void Update()
     {
         SendInput();
-        
+    }
+
+    int ReturnLevelID()
+    {
+        return currentId;
     }
 
 
@@ -84,10 +97,10 @@ void Update()
             ReturningBotReply();
             // Parse JSON response
             string responseJson = request.downloadHandler.text;
-            ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
+            //ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
 
             // Log the response message
-            Debug.Log("Bot1 Response: " + responseData.response);
+            //Debug.Log("Bot1 Response: " + responseData.response);
         }
     }
 
@@ -115,8 +128,6 @@ void Update()
 
     private void SendInput()
     {
-        
-
         // If the text box is not empty and the player presses 'Enter' key
         if (playerInputTextBox.text != null && (Input.GetKeyDown(KeyCode.Return)))
         {
@@ -126,7 +137,6 @@ void Update()
             StartCoroutine(PostMessage(bot1URL, FormPlayerSentences()));
             //After input has been sent, reset input box back to empty
             Debug.Log(playerText);
-            
         }
     }
 

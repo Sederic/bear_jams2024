@@ -65,13 +65,7 @@ public class Dialogue : MonoBehaviour
             index++;
 
         }
-        else
-        {
-            
-
-        }
     }
-
     public void UpdateDialogue(string[] lines)
     {
         index = 0;

@@ -5,12 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigator : MonoBehaviour
 {
-    [SerializeField]
+    
     string sceneToLoadName;
+    GameManager gameManager;
 
-    public void StartGameScene()
+
+    private void Start()
+    {
+        gameManager = GetComponent<GameManager>();
+    }
+
+    public void GoToMainScene()
     {
         SceneManager.LoadScene(2);
+    }
+    public void StartGameScene()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void NavigateToScene()

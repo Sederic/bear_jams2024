@@ -7,12 +7,6 @@ public class Bouncer : MonoBehaviour
 {
     [SerializeField] SpriteRenderer checkIdImage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void CheckID()
     {
         checkIdImage.enabled = true;
