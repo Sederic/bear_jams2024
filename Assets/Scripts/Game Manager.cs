@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
         dialogueClass = FindObjectOfType<Dialogue>();
         RecieveDialogue();
 
-
         Dictionary<int, string> Name = new Dictionary<int, string>()
         {
             {1, "Example"},
@@ -36,7 +35,6 @@ public class GameManager : MonoBehaviour
             {4, "21"},
             {5, "30"},
             {6, "Example"}
-
         };
     }
 
@@ -67,16 +65,15 @@ public class GameManager : MonoBehaviour
     {
         // *** BJORN CODE HERE ***
 
-
-        // After 
+        // Whatever the bot returns, let's assign it to this string below.
         string botReply = "This string was sent from the bot and into the dialogue script.  " +
             "I am testing to see if the lines will be added properly." +
             "It should print out a new lines at ever 'return' key or every dot.";
 
+        // The string will be cut up into lines of dialogue so they display neatly on the GUI
         string[] dialogueLines = botReply.Split('\n','.');
 
+        // This updates the 
         dialogueClass.UpdateDialogue(dialogueLines);
-
-
     }
 }
