@@ -17,8 +17,7 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NextLine();
-        textMeshProUGUI.text = string.Empty;
+        //textMeshProUGUI.text = string.Empty;
         StartDialogue();
     }
 
@@ -63,12 +62,13 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 
     public void UpdateDialogue(string[] lines)
     { 
         linesOfDialogue = lines;
+
     }
 }
