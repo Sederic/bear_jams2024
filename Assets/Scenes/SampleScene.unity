@@ -687,7 +687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Example
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac9a766c2b5035a4296f015fd84deeab, type: 2}
   m_sharedMaterial: {fileID: 7055014326735615125, guid: ac9a766c2b5035a4296f015fd84deeab, type: 2}
@@ -795,9 +795,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueClass: {fileID: 0}
   playerInputTextBox: {fileID: 1650077436}
+  playerText: 
+  currentId: 0
   playerInput: 
-  selectedBot: bot1
   botReply: 
+  conversation: 
+  selectedBot: bot1
 --- !u!4 &623323700
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,9 +1067,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1022796675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06f38dc5d0490e94a8bb67456c5d879e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbc12e3bde59ca4186e28f66a2c60ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputBox: {fileID: 1650077436}
 --- !u!1 &1122208186
 GameObject:
   m_ObjectHideFlags: 0

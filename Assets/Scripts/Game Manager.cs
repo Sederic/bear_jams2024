@@ -11,23 +11,23 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour {
+
+    // Dialogue System
     public Dialogue dialogueClass;
     public TextMeshProUGUI playerInputTextBox;
     public string playerText;
     public int currentId = 0;
     public string playerInput;
-    public string conversation;
+    public string botReply;
+    public string conversation = "";
 
 
+    // Bot Variables
     public string selectedBot = "bot1";
     private string bot1URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot1";
     private string bot2URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot2";
-    public string botReply;
-/*    public string[] names = new string[] { "Example" };
-    public string[] DOB = new string [] {"Feb 22, 1997" };
-    public string[] Location = new string [] {"Canada" };
-    public string[] IDType = new string [] {"Student ID" };
-    public string[] phys_feature = new string [] {"a big Nose" };*/
+    
+
 
 
     private string json = @"{
@@ -104,8 +104,11 @@ void Update()
         string[] phys_feature = new string[] { "a big Nose" };
 
 
-        playerInput = $"{names[0]} born on {DOB[0]} who has an ID from {Location[0]}. Their ID photo features a person with {phys_feature[0]}. The ID is a {IDType[0]}. They just said: {playerText}";
-        Debug.Log(playerInput);
+        playerInput = $"{names[currentId]} born on {DOB[currentId]} who has an ID from {Location[currentId]}. Their ID photo features a person with {phys_feature[currentId]}. The ID is a {IDType[currentId]}. They just said: {playerText}. ";
+
+        //Previous Conversations\"{conversation}\"
+        conversation = conversation + playerInput;
+        Debug.Log(conversation);
         return playerInput;
     }
 
@@ -116,12 +119,9 @@ void Update()
         // If the text box is not empty and the player presses 'Enter' key
         if (playerInputTextBox.text != null && (Input.GetKeyDown(KeyCode.Return)))
         {
-
             playerText = playerInputTextBox.text;
-            // *** BJORN CODE HERE ***
-
-;
-
+            playerInputTextBox.text = null;
+       
             StartCoroutine(PostMessage(bot1URL, FormPlayerSentences())); 
 
 

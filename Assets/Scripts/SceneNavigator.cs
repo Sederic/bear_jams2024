@@ -8,6 +8,11 @@ public class SceneNavigator : MonoBehaviour
     [SerializeField]
     string sceneToLoadName;
 
+    public void StartGameScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
     public void NavigateToScene()
     {
         SceneManager.LoadScene(sceneToLoadName);
