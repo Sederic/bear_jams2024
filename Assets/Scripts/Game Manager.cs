@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
 void Update()
     {
         SendInput();
-        ReturningBotReply();
+        
     }
 
 
@@ -81,6 +81,7 @@ void Update()
             // Log response
             Debug.Log("Response: " + request.downloadHandler.text);
             botReply = request.downloadHandler.text;
+            ReturningBotReply();
             // Parse JSON response
             string responseJson = request.downloadHandler.text;
             ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
@@ -120,23 +121,19 @@ void Update()
         if (playerInputTextBox.text != null && (Input.GetKeyDown(KeyCode.Return)))
         {
             playerText = playerInputTextBox.text;
-            playerInputTextBox.text = null;
+            playerInputTextBox.text = string.Empty;
        
-            StartCoroutine(PostMessage(bot1URL, FormPlayerSentences())); 
-
-
+            StartCoroutine(PostMessage(bot1URL, FormPlayerSentences()));
             //After input has been sent, reset input box back to empty
             Debug.Log(playerText);
+            
         }
     }
 
 
-    private void ReturningBotReply()
+    public void ReturningBotReply()
     // Accesses the Dialogue Script (which is presents the NPC dialogue) and makes string[] linesOfDialogue equal to what the Bot says
     {
-        // *** BJORN CODE HERE ***
-
-
         // Whatever the bot returns, let's assign it to this string below.
         
         // The string will be cut up into lines of dialogue so they display neatly on the GUI
