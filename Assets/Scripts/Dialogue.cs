@@ -17,6 +17,7 @@ public class Dialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        NextLine();
         textMeshProUGUI.text = string.Empty;
         StartDialogue();
     }
