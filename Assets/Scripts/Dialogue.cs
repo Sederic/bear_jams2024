@@ -4,14 +4,18 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using Unity.Collections.LowLevel.Unsafe;
+using System.Threading;
 
 public class Dialogue : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
     public string[] linesOfDialogue;
     [SerializeField] float textSpeed;
+    [SerializeField] float delayBeforeNextLine = 2f;
 
     int index;
+    bool isLineComplete = false;
+    float timer = 0f;
 
 
     // Start is called before the first frame update
@@ -24,18 +28,16 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (isLineComplete)
         {
-            if(textMeshProUGUI.text == linesOfDialogue[index])
+            timer += Time.deltaTime;
+            if (timer >= delayBeforeNextLine)
             {
                 NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textMeshProUGUI.text = linesOfDialogue[index];
+                timer = 0f;
             }
         }
+
     }
 
     void StartDialogue()
@@ -45,30 +47,35 @@ public class Dialogue : MonoBehaviour
     }
     IEnumerator TypeLine()
     {
+        isLineComplete = false;
         foreach (char c in linesOfDialogue[index].ToCharArray())
         {
             textMeshProUGUI.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        isLineComplete=true;
     }
 
     void NextLine()
     {
         if (index < linesOfDialogue.Length - 1)
         {
-            index++;
             textMeshProUGUI.text = string.Empty;
             StartCoroutine(TypeLine());
+            index++;
+
         }
         else
         {
-            //gameObject.SetActive(false);
+            
+
         }
     }
 
     public void UpdateDialogue(string[] lines)
-    { 
+    {
+        index = 0;
         linesOfDialogue = lines;
-
+        
     }
 }
