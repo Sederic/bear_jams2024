@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public string selectedBot = "bot1";
     private string bot1URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot1";
     private string bot2URL = "https://chatbot-bjornwilliams1.replit.app/chat/bot2";
+    public string botReply;
 
     private string json = @"{
         'values': {
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(PostMessage(bot1URL, "how are you??"));
 
-        RecieveDialogue();
+        
         
         Dictionary<int, string> Name = new Dictionary<int, string>()
         {
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         SendInput();
+        RecieveDialogue();
     }
 
     IEnumerator PostMessage(string url, string message)
@@ -89,7 +92,7 @@ public class GameManager : MonoBehaviour
         {
             // Log response
             Debug.Log("Response: " + request.downloadHandler.text);
-
+            botReply = request.downloadHandler.text;
             // Parse JSON response
             string responseJson = request.downloadHandler.text;
             ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
@@ -124,22 +127,15 @@ public class GameManager : MonoBehaviour
     {
         // *** BJORN CODE HERE ***
 
-        // Whatever the bot returns, let's assign it to this string below.
-        string botReply = "This string was sent from the bot and into the dialogue script.  " +
-            "I am testing to see if the lines will be added properly." +
-            "It should print out a new lines at ever 'return' key or every dot.";
 
+        // Whatever the bot returns, let's assign it to this string below.
+        
         // The string will be cut up into lines of dialogue so they display neatly on the GUI
         string[] dialogueLines = botReply.Split('\n','.');
 
         // This updates the 
         dialogueClass.UpdateDialogue(dialogueLines);
     }
-}
-
-[System.Serializable]
-public class Root {
-    public string response { get; set; }
 }
 
 [System.Serializable]
