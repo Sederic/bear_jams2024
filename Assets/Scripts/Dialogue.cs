@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class Dialogue : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
-    [SerializeField] string[] lines;
+    public string[] linesOfDialogue;
     [SerializeField] float textSpeed;
 
     int index;
@@ -25,14 +26,14 @@ public class Dialogue : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if(textMeshProUGUI.text == lines[index])
+            if(textMeshProUGUI.text == linesOfDialogue[index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                textMeshProUGUI.text = lines[index];
+                textMeshProUGUI.text = linesOfDialogue[index];
             }
         }
     }
@@ -44,7 +45,7 @@ public class Dialogue : MonoBehaviour
     }
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in linesOfDialogue[index].ToCharArray())
         {
             textMeshProUGUI.text += c;
             yield return new WaitForSeconds(textSpeed);
@@ -53,7 +54,7 @@ public class Dialogue : MonoBehaviour
 
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index < linesOfDialogue.Length - 1)
         {
             index++;
             textMeshProUGUI.text = string.Empty;
@@ -63,5 +64,10 @@ public class Dialogue : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void UpdateDialogue(string[] lines)
+    { 
+        linesOfDialogue = lines;
     }
 }
