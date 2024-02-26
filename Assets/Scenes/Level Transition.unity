@@ -950,6 +950,7 @@ MonoBehaviour:
   id01: {fileID: 21300000, guid: 1445ffed2968e2d4e8b9e778b47f1977, type: 3}
   id02: {fileID: 21300000, guid: f96942707fbf75b498f3c8092ae0e594, type: 3}
   id03: {fileID: 21300000, guid: 2a625a130b72d8a4d801ef8a35ff3a0c, type: 3}
+  id04: {fileID: 21300000, guid: ee0b15243ceb52d46ad5525cb9fb9f0c, type: 3}
   IDRenderer: {fileID: 176770433}
   currentPlayerID: 0
 --- !u!1660057539 &9223372036854775807

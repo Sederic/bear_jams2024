@@ -8,6 +8,7 @@ public class ID : MonoBehaviour
     [SerializeField] Sprite id01;
     [SerializeField] Sprite id02;
     [SerializeField] Sprite id03;
+    [SerializeField] Sprite id04;
 
     [SerializeField] SpriteRenderer IDRenderer;
 

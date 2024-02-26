@@ -135,11 +135,11 @@ public class GameManager : MonoBehaviour {
 
     private string FormPlayerSentences()
     {
-        string[] names = { "Example" };
-        string[] DOB = { "Feb 22, 1997" };
-        string[] Location = { "Canada" };
-        string[] IDType = { "Student ID" };
-        string[] phys_feature = new string[] { "a big Nose" };
+        string[] names = { "Action Jackson", "Queen Lary", "Pinhead Petunia", "JJ Jingler Beluga", "pringle Submarine"};
+        string[] DOB = { "August 1, 2000", "May 28, 1961", "December 302, 259 BC", "February 25, 578", "RIGHT HERE RIGHT NOW" };
+        string[] Location = { "14 Oak St. Twin Peaks", "4414 Bakers Lane", "48361 Deerfield manor, Dinckleberg, The Vortex", "1002 W. Liquidduck Blvd.", "UHHH, I CANT REMEMBER" };
+        string[] IDType = { "Twin Peak Driver's License", "Bowling Alley ID", "'Special ID' - The Vortex", "McDonald ID", "Munchies Club" };
+        string[] phys_feature = new string[] { "a brown mullet and blue eyes", "long blue hair", "eyes closed, hair purple", "Green & Blue, pink hair", "Red eyes, bald head with brown hair. Also has blue skin."};
 
 
         playerData = $"{names[currentId]} born on {DOB[currentId]} who has an ID from {Location[currentId]}. Their ID photo features a person with {phys_feature[currentId]}. The ID is a {IDType[currentId]}.";
