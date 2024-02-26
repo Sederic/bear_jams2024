@@ -9,6 +9,11 @@ public class SceneNavigator : MonoBehaviour
     string sceneToLoadName;
     GameManager gameManager;
 
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
     private void Start()
     {

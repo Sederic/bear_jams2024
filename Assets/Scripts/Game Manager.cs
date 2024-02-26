@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -17,9 +18,12 @@ public class GameManager : MonoBehaviour {
     public TextMeshProUGUI playerInputTextBox;
     public string playerText;
     
-    public string playerInput;
+    public string playerData;
     public string botReply;
+    public string botReply2;
+    public string botMessage;
     public string conversation = "";
+    public string fullConversation = "";
 
 
     // Bot Variables
@@ -31,6 +35,8 @@ public class GameManager : MonoBehaviour {
     //Level & ID tracking
     int currentLevelScene = 0;
     int currentId = 0;
+    int playerResponseIndex = 0;
+    
 
 
     public int ReturnCurrentLevel()
@@ -61,6 +67,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         SendInput();
+        EndCondition();
     }
 
     int ReturnLevelID()
@@ -91,16 +98,33 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            // Log response
-            Debug.Log("Response: " + request.downloadHandler.text);
-            botReply = request.downloadHandler.text;
-            ReturningBotReply();
-            // Parse JSON response
-            string responseJson = request.downloadHandler.text;
-            //ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
+            if (url == bot1URL)
+            {
+                // Log response
+                Debug.Log("Response: " + request.downloadHandler.text);
+                botReply = request.downloadHandler.text;
+                ReturningBotReply();
+                // Parse JSON response
+                string responseJson = request.downloadHandler.text;
+                //ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
 
-            // Log the response message
-            //Debug.Log("Bot1 Response: " + responseData.response);
+                // Log the response message
+                //Debug.Log("Bot1 Response: " + responseData.response);
+            }
+            else if (url == bot2URL)
+            {
+                // Log response
+                Debug.Log("Bot2: " + request.downloadHandler.text);
+                botReply2 = request.downloadHandler.text;
+                ReturningBotReply();
+                // Parse JSON response
+                string responseJson = request.downloadHandler.text;
+                //ResponseData responseData = JsonUtility.FromJson<ResponseData>(responseJson);
+
+                // Log the response message
+                //Debug.Log("Bot1 Response: " + responseData.response);
+            }
+
         }
     }
 
@@ -118,12 +142,27 @@ public class GameManager : MonoBehaviour {
         string[] phys_feature = new string[] { "a big Nose" };
 
 
-        playerInput = $"{names[currentId]} born on {DOB[currentId]} who has an ID from {Location[currentId]}. Their ID photo features a person with {phys_feature[currentId]}. The ID is a {IDType[currentId]}. They just said: {playerText}. ";
+        playerData = $"{names[currentId]} born on {DOB[currentId]} who has an ID from {Location[currentId]}. Their ID photo features a person with {phys_feature[currentId]}. The ID is a {IDType[currentId]}.";
 
         //Previous Conversations\"{conversation}\"
-        conversation = conversation + playerInput;
-        Debug.Log(conversation);
-        return playerInput;
+        conversation = conversation + playerText;
+        fullConversation = fullConversation + conversation;
+        Debug.Log(fullConversation);
+        return playerData + playerText;
+    }
+
+    void EndCondition()
+    { 
+
+        if (botReply2 == "yes")
+        {
+            SceneManager.LoadScene(3);
+        }
+        else if (botReply2 == "no") 
+        {
+            SceneManager.LoadScene(4);
+
+        }
     }
 
     private void SendInput()
@@ -137,6 +176,13 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(PostMessage(bot1URL, FormPlayerSentences()));
             //After input has been sent, reset input box back to empty
             Debug.Log(playerText);
+            playerResponseIndex++;
+
+            if (playerResponseIndex == 3)
+            {
+                Debug.Log("Bot 2 Called");
+                StartCoroutine(PostMessage(bot2URL, fullConversation));
+            }
         }
     }
 
@@ -148,9 +194,15 @@ public class GameManager : MonoBehaviour {
         
         // The string will be cut up into lines of dialogue so they display neatly on the GUI
         string[] dialogueLines = botReply.Split('\n','.');
+        Debug.Log(LogConversation());
 
         // This updates the 
         dialogueClass.UpdateDialogue(dialogueLines);
+    }
+
+    public string LogConversation()
+    {
+        return fullConversation;
     }
 }
 
