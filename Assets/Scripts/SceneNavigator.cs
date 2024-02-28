@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,6 @@ public class SceneNavigator : MonoBehaviour
 {
     
     string sceneToLoadName;
-    GameManager gameManager;
 
     public void GoToMainMenu()
     {
@@ -15,11 +15,6 @@ public class SceneNavigator : MonoBehaviour
     public void CreditsScene()
     {
         SceneManager.LoadScene(5);
-    }
-
-    private void Start()
-    {
-        gameManager = GetComponent<GameManager>();
     }
 
     public void GoToMainScene()

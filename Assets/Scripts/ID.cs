@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class ID : MonoBehaviour
 {
     [SerializeField] Sprite id00;
@@ -12,6 +14,9 @@ public class ID : MonoBehaviour
 
     //ID Trackign
     public int currentPlayerID;
+    int scenesLoadedCount = 0;
+    public int maxScenesToPersist = 2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +24,27 @@ public class ID : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         currentPlayerID = Random.Range(0, 4);
         UpdateIDs(currentPlayerID);
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        scenesLoadedCount++;
+
+        if (scenesLoadedCount > maxScenesToPersist)
+        {
+            Destroy(gameObject);
+
+            SceneManager.sceneLoaded -= OnSceneLoaded; 
+        }
+    }
+
+    public void DestroyIDManager()
+    {
+        Destroy(this.gameObject);
+    }
+
 
     public void TurnOffSprite()
     {
