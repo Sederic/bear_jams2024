@@ -22,7 +22,7 @@ public class ID : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        currentPlayerID = Random.Range(0, 4);
+        currentPlayerID = Random.Range(0, 5);
         UpdateIDs(currentPlayerID);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
