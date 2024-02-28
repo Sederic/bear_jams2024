@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,14 +13,22 @@ public class ID : MonoBehaviour
 
     [SerializeField] SpriteRenderer IDRenderer;
 
+
     //ID Trackign
     public int currentPlayerID;
 
     // Start is called before the first frame update
     void Start()
     {
-        int currentPlayerID = 1;
+        DontDestroyOnLoad(gameObject);
+        currentPlayerID = Random.Range(0, 4);
         UpdateIDs(currentPlayerID);
+
+    }
+
+    public void TurnOffSprite()
+    {
+        IDRenderer.gameObject.SetActive(false);
     }
 
     public void UpdateIDs(int id)

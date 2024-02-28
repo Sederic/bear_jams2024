@@ -34,8 +34,9 @@ public class GameManager : MonoBehaviour {
 
     //Level & ID tracking
     int currentLevelScene = 0;
-    int currentId = 1;
+    [SerializeField] int currentId;
     int playerResponseIndex = 0;
+    ID idclass;
     
 
 
@@ -54,12 +55,17 @@ public class GameManager : MonoBehaviour {
     'consentToken': 't65wRU6rttK1klzu768'
     }";
 
+
     // Start is called before the first frame update
     void Start()
     {
+        idclass = FindObjectOfType<ID>();
         dialogueClass = FindObjectOfType<Dialogue>();
-
-        StartCoroutine(PostMessage(bot1URL, "Hello"));
+        currentId = idclass.currentPlayerID;
+        idclass.TurnOffSprite();
+        FormPlayerSentences();
+        StartCoroutine(PostMessage(bot1URL, playerData));
+        Debug.Log(idclass.currentPlayerID);
 
 }
 
@@ -68,11 +74,7 @@ public class GameManager : MonoBehaviour {
     {
         SendInput();
         EndCondition();
-    }
-
-    int ReturnLevelID()
-    {
-        return currentId;
+        
     }
 
 
@@ -143,7 +145,7 @@ public class GameManager : MonoBehaviour {
 
 
         playerData = $"{names[currentId]} born on {DOB[currentId]} who has an ID from {Location[currentId]}. Their ID photo features a person with {phys_feature[currentId]}. The ID is a {IDType[currentId]}.";
-
+        
         //Previous Conversations\"{conversation}\"
         conversation = conversation + playerText;
         fullConversation = fullConversation + conversation;
@@ -174,6 +176,7 @@ public class GameManager : MonoBehaviour {
             playerInputTextBox.text = string.Empty;
        
             StartCoroutine(PostMessage(bot1URL, FormPlayerSentences()));
+            Debug.Log(playerData);
             //After input has been sent, reset input box back to empty
             Debug.Log(playerText);
             playerResponseIndex++;
@@ -193,7 +196,7 @@ public class GameManager : MonoBehaviour {
         // Whatever the bot returns, let's assign it to this string below.
         
         // The string will be cut up into lines of dialogue so they display neatly on the GUI
-        string[] dialogueLines = botReply.Split('\n','.');
+        string[] dialogueLines = botReply.Split('\n');
         Debug.Log(LogConversation());
 
         // This updates the 
