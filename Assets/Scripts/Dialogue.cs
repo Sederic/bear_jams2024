@@ -58,7 +58,7 @@ public class Dialogue : MonoBehaviour
 
     void NextLine()
     {
-        if (index < linesOfDialogue.Length - 1)
+        if (index <= linesOfDialogue.Length - 1)
         {
             textMeshProUGUI.text = string.Empty;
             StartCoroutine(TypeLine());

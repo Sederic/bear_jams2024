@@ -18,7 +18,7 @@ public class ID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int currentPlayerID = Random.Range(0, 3);
+        int currentPlayerID = 1;
         UpdateIDs(currentPlayerID);
     }
 

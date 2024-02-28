@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
 
     //Level & ID tracking
     int currentLevelScene = 0;
-    int currentId = 0;
+    int currentId = 1;
     int playerResponseIndex = 0;
     
 
