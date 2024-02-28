@@ -12,6 +12,10 @@ public class SceneNavigator : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void CreditsScene()
+    {
+        SceneManager.LoadScene(5);
+    }
 
     private void Start()
     {

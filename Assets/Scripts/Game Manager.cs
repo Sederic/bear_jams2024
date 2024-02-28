@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] int currentId;
     int playerResponseIndex = 0;
     ID idclass;
-    
+
+    //Game Pause
+    [SerializeField] Canvas pauseMenuCanvas;
 
 
     public int ReturnCurrentLevel()
@@ -61,14 +63,23 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(PostMessage(bot1URL, playerData));
         Debug.Log(idclass.currentPlayerID);
 
-}
+    }
 
 // Update is called once per frame
     void Update()
     {
         SendInput();
         EndCondition();
-        
+        PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuCanvas.gameObject.SetActive(!pauseMenuCanvas.gameObject.activeSelf);
+            Debug.Log("Escape key pressed.");
+        }
     }
 
 
@@ -160,6 +171,7 @@ public class GameManager : MonoBehaviour {
 
         }
     }
+
 
     private void SendInput()
     {
