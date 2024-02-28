@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor;
-using Unity.Collections.LowLevel.Unsafe;
-using System.Threading;
+
 
 public class Dialogue : MonoBehaviour
 {
